@@ -1,0 +1,159 @@
+<nz-row nzJustify="center">
+<nz-card style="margin: 60px; width: 1000px;" nzTitle="Invoice Generator" [nzExtra]="extraTemplate">
+    <form nz-form [formGroup]="invoiceForm">
+        
+        <nz-row nzGutter="8">
+            <div class="font-semibold">Seller Details: </div> 
+            <nz-col [nzSpan]="12" [nzSm]="24" [nzXs]="24">
+              <nz-form-item>
+                <nz-form-label nzSpan="3" nzFor="sellerName" nzRequired>Seller Name</nz-form-label>
+                <nz-form-control nzErrorTip="Please input name!">
+                  <input nz-input id="sellerName" formControlName="sellerName" placeholder="Name of Business" />
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+          </nz-row>
+
+          <nz-row nzGutter="8">
+            <nz-col [nzSpan]="12" [nzSm]="12" [nzXs]="24">
+              <nz-form-item>
+                <nz-form-label nzFor="sellerPhoneNumber" nzRequired>Phone Number</nz-form-label>
+                <nz-form-control nzErrorTip="This field is required">
+                  <input nz-input type="text" placeholder="Enter seller Phone Number" formControlName="sellerPhoneNumber" id="sellerPhoneNumber" />
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+            <nz-col [nzSpan]="12" [nzSm]="12" [nzXs]="24">
+              <nz-form-item>
+                <nz-form-label nzFor="sellerEmail" nzRequired>Email</nz-form-label>
+                <nz-form-control nzErrorTip="This field is required">
+                  <input nz-input type="text" placeholder="Enter seller email" formControlName="sellerEmail" id="sellerEmail" />
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+          </nz-row>
+
+          <nz-row nzGutter="8">
+            <nz-col [nzSpan]="12" [nzSm]="24" [nzXs]="24">
+              <nz-form-item>
+                <nz-form-label nzSpan="3" nzFor="sellerAddress" nzRequired>Seller Address</nz-form-label>
+                <nz-form-control nzErrorTip="Please input address!">
+                  <input nz-input id="sellerAddress" formControlName="sellerAddress" placeholder="Seller Address" />
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+          </nz-row>
+          
+          <div class="font-semibold">Buyer Details: </div> 
+          <nz-row nzGutter="8">
+            <nz-col [nzSpan]="12" [nzSm]="24" [nzXs]="24">
+              <nz-form-item>
+                <nz-form-label nzSpan="3" nzFor="buyerName" nzRequired>Buyer Name</nz-form-label>
+                <nz-form-control nzErrorTip="Please input buyer name!">
+                  <input nz-input id="buyerName" formControlName="buyerName" placeholder="Name of buyer" />
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+          </nz-row>
+
+          <nz-row nzGutter="8">
+            <nz-col [nzSpan]="12" [nzSm]="12" [nzXs]="24">
+              <nz-form-item>
+                <nz-form-label nzFor="buyerPhoneNumber" nzRequired>Phone Number</nz-form-label>
+                <nz-form-control nzErrorTip="This field is required">
+                  <input nz-input type="text" placeholder="Enter buyer Phone Number" formControlName="buyerPhoneNumber" id="buyerPhoneNumber" />
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+            <nz-col [nzSpan]="12" [nzSm]="12" [nzXs]="24">
+              <nz-form-item>
+                <nz-form-label nzFor="buyerEmail" nzRequired>Email</nz-form-label>
+                <nz-form-control nzErrorTip="This field is required">
+                  <input nz-input type="text" placeholder="Enter buyer email" formControlName="buyerEmail" id="buyerEmail" />
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+          </nz-row>
+           
+          <nz-row nzGutter="8">
+            <nz-col [nzSpan]="12" [nzSm]="24" [nzXs]="24">
+              <nz-form-item>
+                <nz-form-label nzSpan="3" nzFor="buyerAddress" nzRequired>Buyer Address</nz-form-label>
+                <nz-form-control nzErrorTip="Please input buyer address!">
+                  <input nz-input id="buyerAddress" formControlName="buyerAddress" placeholder="Buyer Address" />
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+          </nz-row>
+
+          <nz-row nzGutter="8">
+            <nz-col [nzSpan]="12" [nzSm]="24" [nzXs]="24">
+              <nz-form-item>
+                <nz-form-label nzSpan="3" nzFor="paymentDueDate" nzRequired>Due Date</nz-form-label>
+                <nz-form-control nzErrorTip="Please input due date!">
+                  <input nz-input id="paymentDueDate" formControlName="paymentDueDate" placeholder="Enter Due Date" />
+                </nz-form-control>
+              </nz-form-item>
+            </nz-col>
+          </nz-row>
+
+          <div class="font-semibold">Product Details: </div>
+
+          <nz-row nzGutter="8">
+                <div formArrayName="items">
+                    <div *ngFor="let item of items.controls; let i = index">
+                    <div nz-row [formGroupName]="i" nzGutter="8">
+                        <div nz-col nzSpan="6" nzOffset="2">
+                        <nz-form-item>
+                            <nz-form-label  nzFor="item-{{i}}" nzRequired>Item</nz-form-label>
+                            <nz-form-control nzErrorTip="Please input the item name">
+                            <input nz-input id="item-{{i}}" formControlName="item" placeholder="Item" />
+                            </nz-form-control>
+                        </nz-form-item>
+                        </div>
+                        <div nz-col nzSpan="6">
+                        <nz-form-item>
+                            <nz-form-label nzFor="quantity-{{i}}" nzRequired>Quantity</nz-form-label>
+                            <nz-form-control nzErrorTip="Please input the quantity">
+                            <input nz-input type="number" id="quantity-{{i}}" formControlName="quantity" placeholder="Quantity" />
+                            </nz-form-control>
+                        </nz-form-item>
+                        </div>
+                        <div nz-col nzSpan="6">
+                        <nz-form-item>
+                            <nz-form-label nzFor="price-{{i}}" nzRequired>Price per unit</nz-form-label>
+                            <nz-form-control nzErrorTip="Please input the price per unit">
+                            <input nz-input type="number" id="price-{{i}}" formControlName="pricePerUnit" placeholder="Unit Price" />
+                            </nz-form-control>
+                        </nz-form-item>
+                        </div>
+                        <div nz-col>
+                          <nz-form-item>
+                            <button nz-button nzType="primary" (click)="addItem()">Add item</button>
+                          </nz-form-item>
+                        </div>
+
+                        <nz-row >
+                            <nz-col [nzOffset]="2">
+                              <nz-form-item>
+                                <button nz-button nzDanger (click)="removeItem(i)" *ngIf="items.controls.length > 1">Remove item</button>
+                              </nz-form-item>
+                            </nz-col>
+                          </nz-row>
+
+                    </div>
+                    </div>
+                    
+                </div>
+
+                <nz-col [nzSpan]="4" [nzOffset]="20">
+                    <button nz-button nzType="primary" [disabled]="!invoiceForm.valid" (click)="submitForm()" >Generate Invoice</button>
+                  </nz-col>
+        </nz-row>
+
+  </form>
+</nz-card>
+</nz-row>
+  <ng-template #extraTemplate>
+    Invoice details
+  </ng-template>
