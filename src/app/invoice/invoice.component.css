@@ -1,0 +1,7 @@
+::ng-deep .ant-descriptions-title {
+    font-size: 20px;
+}
+
+.my-custom-header th {
+    background-color: rgb(254 215 170);
+  }

@@ -1,1 +1,77 @@
-<p>invoice works!</p>
+
+<nz-row nzJustify="center">
+    <nz-card style="margin: 30px; width: 1000px;" [nzExtra]="extraTemplate">
+        <div id="pdf-content">
+        <nz-descriptions nzTitle="INVOICE">
+            <nz-descriptions-item nzSpan="4" nzTitle="Seller Name">{{formData.sellerName}}</nz-descriptions-item>
+            <nz-descriptions-item nzSpan="4" nzTitle="Seller Address">{{formData.sellerAddress}}</nz-descriptions-item>
+            <nz-descriptions-item nzSpan="4"nzTitle="Seller Phone Number">{{formData.sellerPhoneNumber}}</nz-descriptions-item>
+            <nz-descriptions-item nzSpan="4"nzTitle="Seller Email">{{formData.sellerEmail}}</nz-descriptions-item>
+          </nz-descriptions>
+          <br>
+
+          <nz-descriptions nzColon="false">
+            <nz-descriptions-item nzSpan="1"nzTitle="Bill to:"></nz-descriptions-item>
+            <nz-descriptions-item nzSpan="3" nzTitle="Invoice Number:">{{this.invoiceNo}}</nz-descriptions-item>
+            <nz-descriptions-item nzSpan="1" nzTitle="Buyer Name:">{{formData.buyerName}}</nz-descriptions-item>
+            <nz-descriptions-item nzSpan="3"nzTitle="Invoice Date:">{{this.todayDate}}</nz-descriptions-item>
+            <nz-descriptions-item nzSpan="1" nzTitle="Buyer Address:">{{formData.buyerAddress}}</nz-descriptions-item>
+            <nz-descriptions-item nzSpan="3" nzTitle="Payment Due:">{{formData.paymentDueDate | date:'MM/dd/YYYY'}}</nz-descriptions-item>
+            <nz-descriptions-item nzSpan="4" nzTitle="Buyer Phone Number:">{{formData.buyerPhoneNumber}}</nz-descriptions-item>
+            <nz-descriptions-item nzSpan="4" nzTitle="Buyer Email:">{{formData.buyerEmail}}</nz-descriptions-item>
+          </nz-descriptions>
+
+          <br>
+
+          <nz-table #middleTable nzTheadTr class="my-custom-header"  nzSize="small" [nzData]="data" [nzShowPagination]="false">
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th nzWidth="20%">Quantity</th>
+                <th nzWidth="18%">Price per Unit</th>
+                <th nzWidth="15%">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of middleTable.data">
+                <td>{{ data.item }}</td>
+                <td>{{ data.quantity }}</td>
+                <td>${{ data.pricePerUnit }}</td>
+                <td>${{ data.total }}</td>
+              </tr>
+            </tbody>
+          </nz-table>
+
+
+          <div class="flex flex-auto space-x-[120px] justify-end text-left mr-[100px] py-2">
+            <div class="flex font-semibold">Subtotal</div>
+            <div class="flex">${{this.subTotal}}</div>
+          </div>
+          <div class="flex flex-auto space-x-[110px] justify-end text-left mr-[100px] py-1">
+            <div class="flex font-semibold">Tax 0.00%</div>
+            <div class="flex">${{this.taxes}}.00</div>
+          </div>
+          <div class="flex flex-auto space-x-[100px] justify-end text-left mr-[100px] py-1">
+            <div class="flex font-semibold">Fees/Discount</div>
+            <div class="flex">${{this.discount}}.00</div>
+          </div>
+          <div class="flex flex-auto justify-end text-left py-2">
+            <div class="flex bg-orange-200">
+            <div class="flex space-x-[90px] mr-[90px]">
+            <div class="flex font-bold p-2 ml-4">TOTAL</div>
+            <div class="flex font-bold p-2 ml-4">${{this.grandTotal}}</div>
+           </div>
+           </div>
+          </div>
+
+          <div class="py-6">
+            <div>TERMS AND CONDITIONS</div>
+            <div class="py-1 italic">Terms and conditions go here</div>
+          </div>
+        </div>
+    </nz-card>
+</nz-row>
+<ng-template #extraTemplate>
+    <button nz-button nzType="primary" (click)="downloadPDF()" >Download Invoice as PDF</button>
+  </ng-template>
+  <canvas #pdfCanvas></canvas>

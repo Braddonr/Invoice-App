@@ -27,7 +27,7 @@
               <nz-form-item>
                 <nz-form-label nzFor="sellerEmail" nzRequired>Email</nz-form-label>
                 <nz-form-control nzErrorTip="This field is required">
-                  <input nz-input type="text" placeholder="Enter seller email" formControlName="sellerEmail" id="sellerEmail" />
+                  <input nz-input type="email" placeholder="Enter seller email" formControlName="sellerEmail" id="sellerEmail" />
                 </nz-form-control>
               </nz-form-item>
             </nz-col>
@@ -69,7 +69,7 @@
               <nz-form-item>
                 <nz-form-label nzFor="buyerEmail" nzRequired>Email</nz-form-label>
                 <nz-form-control nzErrorTip="This field is required">
-                  <input nz-input type="text" placeholder="Enter buyer email" formControlName="buyerEmail" id="buyerEmail" />
+                  <input nz-input type="email" placeholder="Enter buyer email" formControlName="buyerEmail" id="buyerEmail" />
                 </nz-form-control>
               </nz-form-item>
             </nz-col>
@@ -91,7 +91,7 @@
               <nz-form-item>
                 <nz-form-label nzSpan="3" nzFor="paymentDueDate" nzRequired>Due Date</nz-form-label>
                 <nz-form-control nzErrorTip="Please input due date!">
-                  <input nz-input id="paymentDueDate" formControlName="paymentDueDate" placeholder="Enter Due Date" />
+                    <nz-date-picker nzPlacement="topRight" style="width: 100%" [(ngModel)]="date" (ngModelChange)="onChange($event)" id="paymentDueDate" formControlName="paymentDueDate"></nz-date-picker>
                 </nz-form-control>
               </nz-form-item>
             </nz-col>
@@ -102,7 +102,7 @@
           <nz-row nzGutter="8">
                 <div formArrayName="items">
                     <div *ngFor="let item of items.controls; let i = index">
-                    <div nz-row [formGroupName]="i" nzGutter="8">
+                     <div nz-row [formGroupName]="i" nzGutter="8">
                         <div nz-col nzSpan="6" nzOffset="2">
                         <nz-form-item>
                             <nz-form-label  nzFor="item-{{i}}" nzRequired>Item</nz-form-label>
@@ -142,7 +142,7 @@
                           </nz-row>
 
                     </div>
-                    </div>
+                </div>
                     
                 </div>
 
@@ -155,5 +155,5 @@
 </nz-card>
 </nz-row>
   <ng-template #extraTemplate>
-    Invoice details
+    Fill in Invoice details
   </ng-template>

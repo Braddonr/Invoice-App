@@ -15,6 +15,13 @@ import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { NzDescriptionsModule } from 'ng-zorro-antd/descriptions';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
+import { registerLocaleData } from '@angular/common';
+import en from '@angular/common/locales/en';
+registerLocaleData(en)
+
 
 @NgModule({
   declarations: [
@@ -30,12 +37,15 @@ import { NzSpaceModule } from 'ng-zorro-antd/space';
     FormsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    NzDatePickerModule,
     NzGridModule,
     NzIconModule,
     NzInputModule,
     NzButtonModule,
     NzSkeletonModule,
-    NzSpaceModule
+    NzSpaceModule,
+    NzDescriptionsModule,
+    NzTableModule
   
   ],
   providers: [],

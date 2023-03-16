@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormArray, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { InvoiceDataService } from '../services/invoice-data.service';
+import { getISOWeek } from 'date-fns';
+import { en_US, NzI18nService, zh_CN } from 'ng-zorro-antd/i18n';
 
 @Component({
   selector: 'app-home',
@@ -11,12 +13,14 @@ import { InvoiceDataService } from '../services/invoice-data.service';
 export class HomeComponent implements OnInit {
 
   invoiceForm!: FormGroup;
-
+  date = null;
+  isEnglish = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private invoiceData : InvoiceDataService,
     private router: Router,
+    private i18n: NzI18nService
   ) { }
 
   ngOnInit() {
@@ -32,6 +36,17 @@ export class HomeComponent implements OnInit {
       paymentDueDate:new FormControl('', [<any>Validators.required]),
       items: this.formBuilder.array([this.createItem()])
     });
+    this.i18n.setLocale(en_US);
+  }
+
+  onChange(result: Date): void {
+    console.log('onChange: ', result);
+  }
+
+  
+  changeLanguage(): void {
+    this.i18n.setLocale(this.isEnglish ? zh_CN : en_US);
+    this.isEnglish = !this.isEnglish;
   }
 
   createItem(): FormGroup {
