@@ -130,7 +130,7 @@ export class InvoiceComponent implements OnInit {
         ],
       };
       pdfMake.createPdf(docDefinition).download('INVOICE.pdf');
-      pdfMake.createPdf(docDefinition).open();
+      // pdfMake.createPdf(docDefinition).open();
     });
   }
 }
